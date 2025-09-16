@@ -1,0 +1,30 @@
+#include <iostream>   // бібліотека для вводу/виводу (cout, endl)
+#include <cmath>      // бібліотека для sqrt, cbrt, sin, acos
+
+int main() {
+    // Задаємо початкові значення
+    double a = 4.0, b = 0.5;
+
+    // Константа числа π
+    const double pi = std::acos(-1);
+
+    // Крок 1: квадратний корінь з b
+    double sqrt_b = std::sqrt(b);
+
+    // Крок 2: кубічний корінь з a
+    double cbrt_a = std::cbrt(a);
+
+    // Крок 3: обчислюємо (0.75 * sqrt(b) - 0.5 * cbrt(a))
+    double expr = 0.75 * sqrt_b - 0.5 * cbrt_a;
+
+    // Крок 4: обчислюємо sin(b * π / 3)
+    double factor = std::sin(b * pi / 3.0);
+
+    // Крок 5: кінцевий результат
+    double y = expr * factor;
+
+    // Вивід результату
+    std::cout << "Result: y = " << y << std::endl;
+
+    return 0;
+} // <- ця дужка закриває main()
