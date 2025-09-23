@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int studentNumber;
+    cout << "Enter student number (1-7): ";
+    cin >> studentNumber;
+
+    switch(studentNumber) {
+        case 1:
+            cout << "1. Artemenko P.V." << endl;
+            break;
+        case 2:
+            cout << "2. Avakyan K.V." << endl;
+            break;
+        case 3:
+            cout << "3. Boyko V.V." << endl;
+            break;
+        case 4:
+            cout << "4. Borodin V.M." << endl;
+            break;
+        case 5:
+            cout << "5. Bugay V.M." << endl;
+            break;
+        case 6:
+            cout << "6. Buzin O.B." << endl;
+            break;
+        case 7:
+            cout << "7. Butenko V.O." << endl;
+            break;
+        default:
+            cout << "Invalid student number! Please enter a number from 1 to 7." << endl;
+    }
+
+    return 0;
+}

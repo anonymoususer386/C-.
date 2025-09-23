@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cout << "Enter a three-digit positive number N: ";
+    cin >> N;
+
+    // Перевірка, що число трьохзначне
+    if (N < 100 || N > 999) {
+        cout << "Number is not three-digit!" << endl;
+        return 1;
+    }
+
+    // Розкладання на цифри
+    int hundreds = N / 100;
+    int tens = (N / 10) % 10;
+    int units = N % 10;
+
+    int product = 1;  // Початковий добуток
+    bool hasEven = false; // Флаг наявності парних цифр
+
+    // Перевірка сотень
+    if (hundreds % 2 == 0) {
+        product *= hundreds;
+        hasEven = true;
+    }
+
+    // Перевірка десятків
+    if (tens % 2 == 0) {
+        product *= tens;
+        hasEven = true;
+    }
+
+    // Перевірка одиниць
+    if (units % 2 == 0) {
+        product *= units;
+        hasEven = true;
+    }
+
+    if (hasEven)
+        cout << "Product of even digits: " << product << endl;
+    else
+        cout << "No even digits, product = 0" << endl;
+
+    return 0;
+}
