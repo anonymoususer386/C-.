@@ -1,50 +1,20 @@
+#include <iostream>
+using namespace std;
+
 int main() {
-    // Ініціалізація генератора випадкових чисел
-    srand(static_cast<unsigned int>(time(nullptr)));
+    double x, y; // координати точки для перевірки
 
-    // ------------------------------
-    // 1. Перевірка точки, яку вводить користувач
-    // ------------------------------
-    Point p;
-    cout << "Enter point coordinates (x y): ";
-    cin >> p.x >> p.y;
+    cout << "Enter x: ";
+    cin >> x;
+    cout << "Enter y: ";
+    cin >> y;
 
-    // Виклик функції isInArea для введеної точки
-    if (isInArea(p.x, p.y))
-        cout << "Point (" << p.x << ", " << p.y << ") is INSIDE the area." << endl;
-    else
-        cout << "Point (" << p.x << ", " << p.y << ") is OUTSIDE the area." << endl;
-
-    // ------------------------------
-    // 2. Генерація випадкових точок
-    // ------------------------------
-    const int N = 5;          // Кількість випадкових точок
-    Point points[N];           // Масив точок
-    int insideCount = 0;       // Лічильник точок всередині прямокутника
-
-    cout << fixed << setprecision(2); // Для виведення чисел з 2-ма знаками після коми
-    cout << "\nRandom points:\n";
-
-    for (int i = 0; i < N; i++) {
-        // Генерація випадкових координат у діапазоні [-2, 3)
-        points[i].x = -2.0 + (rand() / (double)RAND_MAX) * 5.0; // x = [-2, 3)
-        points[i].y = -2.0 + (rand() / (double)RAND_MAX) * 5.0; // y = [-2, 3)
-
-        // Вивід координат точки та перевірка, чи вона всередині прямокутника
-        cout << "Point " << i+1 << ": (" << points[i].x << ", " << points[i].y << ") -> ";
-        if (isInArea(points[i].x, points[i].y)) {
-            cout << "INSIDE" << endl;
-            insideCount++;  // Якщо точка всередині, збільшуємо лічильник
-        } else {
-            cout << "OUTSIDE" << endl;
-        }
+    // Прямокутник: x ∈ [0,2], y ∈ [0,1]
+    if (x >= 0 && x <= 2 && y >= 0 && y <= 1) {
+        cout << "Point (" << x << ", " << y << ") is inside the rectangle." << endl;
+    } else {
+        cout << "Point (" << x << ", " << y << ") is outside the rectangle." << endl;
     }
-
-    // ------------------------------
-    // 3. Вивід підсумку
-    // ------------------------------
-    cout << "\nSummary: " << insideCount << " of " << N 
-         << " random points are inside the area." << endl;
 
     return 0;
 }
