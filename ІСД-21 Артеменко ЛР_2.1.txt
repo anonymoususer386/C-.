@@ -1,52 +1,30 @@
-﻿#include <iostream>   // бібліотека для введення/виведення (cout, cin)
-#include <cmath>      // математичні функції (sqrt, sin, cos)
-#include <cstdlib>    // для генерації випадкових чисел (rand)
-#include <ctime>      // для отримання часу (щоб робити "випадковість")
-#include <vector>     // динамічний масив (vector)
-using namespace std;
-
-// Структура для зберігання пари (x, Y)
-struct Point {
-    double x;  // значення аргументу
-    double Y;  // значення функції
-};
+#include <iostream>
+#include <cmath>    // Для функцій sin() та cos()
 
 int main() {
-    srand(time(0)); // ініціалізація генератора випадкових чисел поточним часом
+    double x, y;
+    double gamma;  // Змінна для γ
 
-    const int N = 10; // розмір масиву (будемо мати 10 точок)
-    vector<Point> arr(N); // масив структур, де кожен елемент має x і Y
+    // Введення значення x
+    std::cout << "Enter x: ";
+    std::cin >> x;
 
-    // === Блок 1. Заповнення масиву випадковими значеннями x ∈ [-10; 10] ===
-    for(int i = 0; i < N; i++) {
-        // rand() / RAND_MAX -> число від 0 до 1
-        // *20 -> діапазон [0; 20]
-        // -10 -> діапазон [-10; 10]
-        arr[i].x = -10 + static_cast<double>(rand()) / RAND_MAX * 20;
+    // Введення значення γ
+    std::cout << "Enter gamma (in radians): ";
+    std::cin >> gamma;
+
+    // Обчислення y по частинах
+    if (x < 0) { // Якщо x підходить зліва від нуля
+        y = x * x - sin(gamma);
+    } else if (x > 0) { // Якщо x > 0
+        y = x + cos(gamma);
+    } else {
+        std::cout << "y не визначене для x = 0" << std::endl;
+        return 0;
     }
 
-    // === Блок 2. Обчислення Y за умовною формулою ===
-    for(int i = 0; i < N; i++) {
-        double x = arr[i].x; // беремо x
-        double y = 0;        // для прикладу візьмемо y = 0 (можна задавати довільно)
+    // Виведення результату
+    std::cout << "y = " << y << std::endl;
 
-        // Умова: якщо x ≤ 0, то Y = x^2 - sin(y)
-        if(x <= 0) {
-            arr[i].Y = x*x - sin(y);
-        }
-        // Інакше (x > 0): Y = sqrt(x) + cos(y)
-        else {
-            arr[i].Y = sqrt(x) + cos(y);
-        }
-    }
-
-    // === Блок 3. Вивід результатів у вигляді таблиці ===
-    cout << "   x\t\tY\n";              // заголовок таблиці
-    cout << "----------------------\n"; // розділювач
-    for(int i = 0; i < N; i++) {
-        // Вивід кожної пари (x, Y)
-        cout << arr[i].x << "\t" << arr[i].Y << endl;
-    }
-
-    return 0; // завершення програми
+    return 0;
 }
