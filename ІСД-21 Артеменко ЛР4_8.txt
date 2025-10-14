@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double num1, num2;
+    const double epsilon = 0.000001;
+
+    cout << "Enter first number: ";
+    cin >> num1;
+
+    cout << "Enter second number: ";
+    cin >> num2;
+
+    // Перевірка на нуль
+    if (num1 == 0 || num2 == 0) {
+        cout << "Cannot divide by zero!" << endl;
+        return 1;
+    }
+
+    double result1 = 1.0 / num1;
+    double result2 = 1.0 / num2;
+
+    // Гармонійні пари для пасхалки (умовно "рівні кільця Мебіуса")
+    bool mobius = false;
+    if ((abs(num1 - 3.14159) < epsilon && abs(num2 - 1.61803) < epsilon) ||
+        (abs(num1 - 1.61803) < epsilon && abs(num2 - 3.14159) < epsilon) ||
+        (abs(num1 - 2.0) < epsilon && abs(num2 - 2.0) < epsilon)) {
+        mobius = true;
+    }
+
+    // Вивід результатів
+    if (mobius) {
+        cout << "Comparing results (like a Mobius loop...)" << endl;
+    } else if (fabs(result1 - result2) <= epsilon) {
+        cout << "Results are equal (by 0.000001 epsilon)" << endl;
+    } else {
+        cout << "Results are not equal (by 0.000001 epsilon)" << endl;
+    }
+
+    return 0;
+}
