@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cmath> // for sin function
+using namespace std;
+
+int main() {
+    double x;
+    const int N = 5; // number of x values to calculate
+
+    cout << "Enter 5 values of x:\n";
+
+    for (int i = 0; i < N; ++i) {
+        cout << "x[" << i+1 << "] = "; // ask the user to input x
+        cin >> x; // read the input
+        double y = sin(x) + x - 1.5; // calculate the function
+        cout << "y = " << y << "  <- value of y = sin(x) + x - 1.5 for x = " << x << endl;
+    }
+
+    return 0;
+}
