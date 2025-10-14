@@ -1,0 +1,104 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>  // rand, srand
+#include <ctime>    // time
+#include <cmath>    // abs
+
+using namespace std;
+
+/*
+  isotope_sim.cpp
+
+  Один файл — дві «особи»:
+  - simple (для лабораторної здачі)  : акуратно повідомляє про успіх/провал для 115
+  - sim (ігровий/симуляційний режим): оцінює "стабільність" ізотопа за ігровими правилами,
+    має тонку відсилку до "Ununpentium" і до гіпотетичного "острова стабільності" (190/191).
+  
+  Примітка: усе, що стосується «стабільності» понад 118 — художня умовність/симуляція,
+  використовуй цей режим для розваги або демонстрації, а не як референс з фізики.
+*/
+
+string lab_mode(int isotope) {
+    // Проста версія: 115 — успіх; інші — повідомлення про провал/неуспіх
+    if (isotope == 115) {
+        return "Ununpentium 115 synthesized successfully!";
+    } else if (isotope < 0) {
+        return "Invalid input: isotope number must be non-negative.";
+    } else if (isotope < 115) {
+        return "Experiment failed: isotope unstable (too light).";
+    } else {
+        return "Experiment failed: isotope unstable (too heavy).";
+    }
+}
+
+string sim_mode(int isotope) {
+    // Симуляційні правила (художня умовність):
+    // - isotope == 115 -> "special synthesis" (пасхалка)
+    // - island of stability around 190-191 -> "theoretical increased stability"
+    // - оцінка стабільності за відстанню до 191 (чем ближче — краще), і до 115 (малий бонус)
+    // - додаємо трохи випадковості, щоб відчувалась "непередбачуваність експерименту"
+    if (isotope < 0) return "Invalid input: isotope number must be non-negative.";
+
+    if (isotope == 115) {
+        return "Ununpentium 115 — special synthesis (paschal reference).";
+    }
+
+    // "Теоретичний острів стабільності" (ігрова умовність)
+    if (isotope == 190 || isotope == 191) {
+        return "Isotope " + to_string(isotope) + " -> THEORETICAL increased stability (island-of-stability).";
+    }
+
+    // Обчислимо простий "score" (вищий = більш стабільно)
+    // Правило (в ігрових цілях):
+    //   базовий = 100 - abs(isotope - 191)
+    //   невеликий бонус, якщо ближче до 115 (пасхалка)
+    //   додаємо випадковий шум від -10 до +10
+    int base = 100 - static_cast<int>(abs(isotope - 191));
+    int bonus115 = max(0, 15 - static_cast<int>(abs(isotope - 115)) / 4); // невеликий бонус за близькість до 115
+    int noise = (rand() % 21) - 10; // від -10 до +10
+
+    int score = base + bonus115 + noise;
+
+    // Класифікація за score (ігрові пороги)
+    // score >= 85 -> stable-ish
+    // 60 <= score < 85 -> metastable
+    // < 60 -> unstable
+    string classification;
+    if (score >= 85) classification = "STABLE (simulated)";
+    else if (score >= 60) classification = "METASTABLE (simulated)";
+    else classification = "UNSTABLE (simulated)";
+
+    // Додаткове повідомлення про "результат експерименту"
+    string result = "Isotope " + to_string(isotope) + " -> " + classification
+                    + "  [score=" + to_string(score) + "]";
+    return result;
+}
+
+int main() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    cout << "Select mode:\n"
+         << "  1) Simple lab mode (clean, for submission)\n"
+         << "  2) Simulation mode (playful, expanded behavior)\n"
+         << "Enter 1 or 2: ";
+    int mode;
+    if (!(cin >> mode)) {
+        cerr << "Invalid input. Exiting.\n";
+        return 1;
+    }
+
+    cout << "Enter isotope number: ";
+    int isotope;
+    if (!(cin >> isotope)) {
+        cerr << "Invalid isotope input. Exiting.\n";
+        return 1;
+    }
+
+    if (mode == 1) {
+        cout << lab_mode(isotope) << endl;
+    } else {
+        cout << sim_mode(isotope) << endl;
+    }
+
+    return 0;
+}

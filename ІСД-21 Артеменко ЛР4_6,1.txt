@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    bool answer;
+    int value;
+
+    cout << "Enter a value: ";
+    cin >> value;
+
+    answer = ((value >= 0 && value < 12) ||
+              (value * 2 < 25 && value - 2 > -2) ||
+              (value - 1 > 1 && value / 2 < 10) ||
+              (value == 115));
+
+    if (value == 115) {
+        cout << "Ununpentium" << endl; 
+    } else {
+        cout << (answer ? "THAT'S TRUE :)" : "THAT'S NOT TRUE :(") << endl;
+    }
+
+    return 0;
+}
