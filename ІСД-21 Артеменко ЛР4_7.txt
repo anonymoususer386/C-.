@@ -1,0 +1,21 @@
+#include <iostream>
+#include <iomanip>  // для fixed, setprecision
+using namespace std;
+
+int main() {
+    // Задаємо змінні
+    float a = 2.3;
+    float b = 2.3;
+    double c = 2.123456;
+    double d = 2.123456;
+    double e = 2.123456;
+
+    // Вивід згідно завдання
+    cout << a << endl;                      // 2.3
+    cout << fixed << setprecision(2) << b << endl; // 2.30
+    cout << setprecision(6) << c << endl;   // 2.123456
+    cout << fixed << setprecision(2) << d << endl; // 2.12
+    cout << fixed << setprecision(0) << e << endl; // 2
+
+    return 0;
+}
