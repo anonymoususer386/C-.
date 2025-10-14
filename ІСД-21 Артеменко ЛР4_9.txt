@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, c, d;
+
+    cout << "Enter first number (0-255): ";
+    if (!(cin >> a)) {
+        cerr << "Invalid input\n";
+        return 1;
+    }
+    cout << "Enter second number (0-255): ";
+    if (!(cin >> b)) {
+        cerr << "Invalid input\n";
+        return 1;
+    }
+    cout << "Enter third number (0-255): ";
+    if (!(cin >> c)) {
+        cerr << "Invalid input\n";
+        return 1;
+    }
+    cout << "Enter fourth number (0-255): ";
+    if (!(cin >> d)) {
+        cerr << "Invalid input\n";
+        return 1;
+    }
+
+    // Перевірка діапазону (0..255) — дозволяє типові приватні адреси на кшталт 192.168.0.3
+    if (a < 0 || a > 255 || b < 0 || b > 255 || c < 0 || c > 255 || d < 0 || d > 255) {
+        cout << "Invalid IP number! Each value must be between 0 and 255." << endl;
+        return 1;
+    }
+
+    // Пасхалка: впізнавання "чужої" IP
+    if (a == 192 && b == 168 && c == 0 && d == 3) {
+        cout << "A zvidky ty znayesh moyu IP-adressu?" << endl;
+    }
+
+    // Стандартний вивід IP (завжди виводимо адресу)
+    cout << a << "." << b << "." << c << "." << d << endl;
+
+    return 0;
+}
