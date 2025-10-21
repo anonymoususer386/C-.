@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="28.2.7">
+  <diagram name="Сторінка-1" id="h9puoTT_7Er-psXj1D2c">
+    <mxGraphModel dx="872" dy="473" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6IWKHyECUj7OAIpIT7Sz-1" value="Початок програми" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6IWKHyECUj7OAIpIT7Sz-4" value="Ввід числа N" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="130" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6IWKHyECUj7OAIpIT7Sz-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="6IWKHyECUj7OAIpIT7Sz-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="130" as="sourcePoint" />
+            <mxPoint x="190" y="110" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="180" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6IWKHyECUj7OAIpIT7Sz-6" value="Перевірка числа N;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Якщо &lt;/span&gt;&lt;code style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot; data-end=&quot;369&quot; data-start=&quot;361&quot;&gt;N &amp;lt;= 0&lt;/code&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt; → виводимо &lt;/span&gt;&lt;code style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot; data-end=&quot;427&quot; data-start=&quot;381&quot;&gt;&quot;Invalid input! N must be a natural number.&quot;&lt;/code&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt; і кінець програми&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Інакше → продовжуємо&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="360" y="75" width="190" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="6IWKHyECUj7OAIpIT7Sz-7" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="6IWKHyECUj7OAIpIT7Sz-6" target="6IWKHyECUj7OAIpIT7Sz-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="200" as="sourcePoint" />
+            <mxPoint x="290" y="200" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="240" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6IWKHyECUj7OAIpIT7Sz-8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="6IWKHyECUj7OAIpIT7Sz-9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="670" y="330" as="sourcePoint" />
+            <mxPoint x="460" y="355" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="460" y="265" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6IWKHyECUj7OAIpIT7Sz-9" value="Ініціалізація змінних&lt;div&gt;&lt;code style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot; data-end=&quot;526&quot; data-start=&quot;513&quot;&gt;product = 1&lt;/code&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt; (добуток парних цифр)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;code style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot; data-end=&quot;573&quot; data-start=&quot;556&quot;&gt;hasEven = false&lt;/code&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt; (прапорець наявності парних цифр)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;code style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot; data-end=&quot;625&quot; data-start=&quot;615&quot;&gt;temp = N&lt;/code&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt; (тимчасова змінна для обчислень)&lt;/span&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="330" width="290" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="f9yBqOQ09y_pOz4Tjfpc-1" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="f9yBqOQ09y_pOz4Tjfpc-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="399.5" as="sourcePoint" />
+            <mxPoint x="430" y="340" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f9yBqOQ09y_pOz4Tjfpc-3" value="&lt;p data-end=&quot;693&quot; data-start=&quot;664&quot;&gt;&lt;strong data-end=&quot;691&quot; data-start=&quot;664&quot;&gt;Цикл &lt;code data-end=&quot;689&quot; data-start=&quot;671&quot;&gt;while (temp &amp;gt; 0)&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;&lt;ul data-end=&quot;964&quot; data-start=&quot;697&quot;&gt;&lt;li data-end=&quot;744&quot; data-start=&quot;697&quot;&gt;&lt;p data-end=&quot;744&quot; data-start=&quot;699&quot;&gt;Отримати останню цифру: &lt;code data-end=&quot;742&quot; data-start=&quot;723&quot;&gt;digit = temp % 10&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;&lt;li data-end=&quot;871&quot; data-start=&quot;748&quot;&gt;&lt;p data-end=&quot;768&quot; data-start=&quot;750&quot;&gt;Перевірка цифри:&lt;/p&gt;&lt;ul data-end=&quot;871&quot; data-start=&quot;774&quot;&gt;&lt;li data-end=&quot;871&quot; data-start=&quot;774&quot;&gt;&lt;ul data-end=&quot;871&quot; data-start=&quot;821&quot;&gt;&lt;li data-end=&quot;871&quot; data-start=&quot;851&quot;&gt;&lt;p data-end=&quot;871&quot; data-start=&quot;853&quot;&gt;&lt;code data-end=&quot;869&quot; data-start=&quot;853&quot;&gt;hasEven = true&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li data-end=&quot;871&quot; data-start=&quot;748&quot;&gt;&lt;p data-end=&quot;768&quot; data-start=&quot;750&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;product *= digit&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;li data-end=&quot;871&quot; data-start=&quot;748&quot;&gt;&lt;p data-end=&quot;768&quot; data-start=&quot;750&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Якщо &lt;/span&gt;&lt;code style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot; data-end=&quot;797&quot; data-start=&quot;781&quot;&gt;digit % 2 == 0&lt;/code&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt; → парна цифри&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="280" width="270" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="f9yBqOQ09y_pOz4Tjfpc-4" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="f9yBqOQ09y_pOz4Tjfpc-3" target="f9yBqOQ09y_pOz4Tjfpc-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="480" as="sourcePoint" />
+            <mxPoint x="325" y="520" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f9yBqOQ09y_pOz4Tjfpc-6" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="f9yBqOQ09y_pOz4Tjfpc-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="550" as="sourcePoint" />
+            <mxPoint x="440" y="500" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f9yBqOQ09y_pOz4Tjfpc-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="f9yBqOQ09y_pOz4Tjfpc-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="550" as="sourcePoint" />
+            <mxPoint x="325" y="640" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="325" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f9yBqOQ09y_pOz4Tjfpc-5" value="&lt;li data-end=&quot;1045&quot; data-start=&quot;989&quot;&gt;&lt;p data-end=&quot;1045&quot; data-start=&quot;991&quot;&gt;Якщо &lt;code data-end=&quot;1013&quot; data-start=&quot;996&quot;&gt;hasEven == true&lt;/code&gt; → вивести добуток парних цифр&lt;/p&gt;&lt;/li&gt;&lt;li data-end=&quot;1093&quot; data-start=&quot;1049&quot;&gt;&lt;p data-end=&quot;1093&quot; data-start=&quot;1051&quot;&gt;Інакше → вивести &lt;code data-end=&quot;1091&quot; data-start=&quot;1068&quot;&gt;&quot;No even digits in N&quot;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="195" y="495" width="260" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f9yBqOQ09y_pOz4Tjfpc-8" value="Кінець програми" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="285" y="640" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
