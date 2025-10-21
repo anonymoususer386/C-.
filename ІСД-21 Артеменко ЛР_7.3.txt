@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    const int MAX_SIZE = 300; // розумний верхній ліміт для екрану
+
+    cout << "Enter a positive integer greater than 1: ";
+    cin >> n;
+
+    // Перевірка введеного числа
+    if (n <= 1) {
+        cout << "Invalid input! Number must be greater than 1." << endl;
+        return 1;
+    }
+    if (n > MAX_SIZE) {
+        cout << "Sorry, the side size is too big." << endl;
+        return 1;
+    }
+
+    // Малюємо верхню границю квадрата
+    cout << '+';
+    for (int i = 0; i < n; i++)
+        cout << '-';
+    cout << '+' << endl;
+
+    // Малюємо середину квадрата
+    for (int i = 0; i < n; i++) {
+        cout << '|';
+        for (int j = 0; j < n; j++)
+            cout << ' ';
+        cout << '|' << endl;
+    }
+
+    // Малюємо нижню границю квадрата
+    cout << '+';
+    for (int i = 0; i < n; i++)
+        cout << '-';
+    cout << '+' << endl;
+
+    return 0;
+}
