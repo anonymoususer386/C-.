@@ -30,7 +30,7 @@ int main() {
     }
 
     // Вивід результатів
-    if (mobius) {
+    if (mobius == true) {
         cout << "Comparing results (like a Mobius loop...)" << endl;
     } else if (fabs(result1 - result2) <= epsilon) {
         cout << "Results are equal (by 0.000001 epsilon)" << endl;
@@ -40,3 +40,4 @@ int main() {
 
     return 0;
 }
+
