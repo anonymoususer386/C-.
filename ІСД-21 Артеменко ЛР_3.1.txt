@@ -17,28 +17,28 @@ int main() {
     int tens = (N / 10) % 10;
     int units = N % 10;
 
-    int product = 1;  // Початковий добуток
+    int product = 0;  // Початковий добуток
     bool hasEven = false; // Флаг наявності парних цифр
 
     // Перевірка сотень
     if (hundreds % 2 == 0) {
-        product *= hundreds;
+        product += 1;
         hasEven = true;
     }
 
     // Перевірка десятків
     if (tens % 2 == 0) {
-        product *= tens;
+        product += 1;
         hasEven = true;
     }
 
     // Перевірка одиниць
     if (units % 2 == 0) {
-        product *= units;
+        product += 1;
         hasEven = true;
     }
 
-    if (hasEven)
+    if (hasEven == true)
         cout << "Product of even digits: " << product << endl;
     else
         cout << "No even digits, product = 0" << endl;
