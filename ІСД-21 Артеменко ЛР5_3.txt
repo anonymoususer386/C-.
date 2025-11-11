@@ -1,0 +1,54 @@
+#include <iostream>
+#include <iomanip> // для форматування таблиці
+#include <cmath>   // для використання функції pow()
+using namespace std;
+
+int main() {
+    double a, b, h; // змінні: початок (a), кінець (b) і крок (h)
+    cout << "Enter start (a), end (b), and step (h): ";
+    cin >> a >> b >> h; // зчитування вхідних значень
+
+    // перевірка на коректність введення
+    if (h <= 0 || a >= b) {
+        cout << "Invalid input! Make sure h > 0 and a < b." << endl;
+        return 1; // завершення програми з помилкою
+    }
+
+    // виведення заголовка таблиці
+    cout << "-------------------------" << endl;
+    cout << setw(10) << "X" << " | " << setw(10) << "Y" << endl;
+    cout << "-------------------------" << endl;
+
+    double x = a; // початкове значення аргументу
+
+    // цикл із передумовою (while) для табулювання функції
+    while (x <= b) {
+        // перевірка області визначення (ОДЗ): x ≥ 0, бо x^(3/4)
+        if (x < 0) {
+            // якщо x не належить ОДЗ — вивести повідомлення
+            cout << setw(10) << x << " | " << "   undefined (x < 0)" << endl;
+        } else {
+            // обчислення функції y = x^(3/4) + 6
+            double y = pow(x, 3.0 / 4.0) + 6;
+
+            // виведення результату у вигляді таблиці
+            cout << setw(10) << fixed << setprecision(3) << x 
+                 << " | " 
+                 << setw(10) << fixed << setprecision(3) << y 
+                 << endl;
+
+            // Пасхалка: якщо x і y симетрично збалансовані — «лінія Мебіуса»
+            if (fabs(y - (x + 6)) < 0.001) {
+                cout << "Symmetry achieved (like a Mobius line...)" << endl;
+            }
+        }
+
+        x += h; // збільшення аргументу на крок h
+    }
+
+    // завершення табулювання
+    cout << "-------------------------" << endl;
+    cout << "End of interval reached or x no longer in domain (ODZ)." << endl;
+
+    return 0;
+}
