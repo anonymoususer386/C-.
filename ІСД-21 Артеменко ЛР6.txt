@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string N;
+    cout << "Enter a number (integer or decimal): ";
+    cin >> N;
+
+    int product = 1;
+    bool hasEven = false;
+
+    for (char c : N) {
+        if (c >= '0' && c <= '9') {        // перевіряємо, що символ — цифра
+            int digit = c - '0';
+            if (digit % 2 == 0 && digit != 0) {  // парна, але не нуль
+                product *= digit;
+                hasEven = true;
+            }
+        }
+    }
+
+    if (hasEven)
+        cout << "Product of even digits = " << product << endl;
+    else
+        cout << "No non-zero even digits found." << endl;
+
+    return 0;
+}
