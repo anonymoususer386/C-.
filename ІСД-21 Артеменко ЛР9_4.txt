@@ -10,6 +10,7 @@ int main() {
 
     // Input array
     for (int i = 0; i < n; i++) {
+    cout << i+1 << ")";
         cin >> arr[i];
     }
 
@@ -29,3 +30,4 @@ int main() {
 
     return 0;
 }
+
