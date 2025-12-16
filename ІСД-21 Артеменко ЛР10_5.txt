@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int m = 3, n = 4;
+    int a[m][n];
+
+    // Ввід масиву
+    cout << "Enter elements of the matrix:\n";
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            cin >> a[i][j];
+
+    int maxVal = a[0][0];
+    int row = 0, col = 0;
+
+    // Пошук максимального елемента
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (a[i][j] > maxVal) {
+                maxVal = a[i][j];
+                row = i;
+                col = j;
+            }
+        }
+    }
+
+    cout << "Maximum element: " << maxVal << endl;
+    cout << "Position: row " << row << ", column " << col << endl;
+
+    return 0;
+}

@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int m = 4, n = 7;
+    int a[m][n];
+
+    // Ввід масиву
+    cout << "Enter elements of the matrix:\n";
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            cin >> a[i][j];
+
+    int minVal = a[0][0];
+    int row = 0, col = 0;
+
+    // Пошук мінімального елемента
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (a[i][j] < minVal) {
+                minVal = a[i][j];
+                row = i;
+                col = j;
+            }
+        }
+    }
+
+    cout << "Minimum element: " << minVal << endl;
+    cout << "Position: row " << row << ", column " << col << endl;
+
+    return 0;
+}

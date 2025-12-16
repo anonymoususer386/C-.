@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int m = 4, n = 3;
+    int a[m][n];
+
+    // Ввід елементів масиву
+    cout << "Enter elements of the matrix:\n";
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> a[i][j];
+        }
+    }
+
+    // Підрахунок парних чисел у кожному рядку
+    for (int i = 0; i < m; i++) {
+        int countEven = 0;
+        for (int j = 0; j < n; j++) {
+            if (a[i][j] % 2 == 0)
+                countEven++;
+        }
+        cout << "Even numbers in row " << i << ": " << countEven << endl;
+    }
+
+    return 0;
+}
