@@ -11,8 +11,8 @@ int main() {
     for (int i = 0; i < N; ++i) {
         cout << "x[" << i+1 << "] = "; // ask the user to input x
         cin >> x; // read the input
-        double y = sin(x) + x - 1.5; // calculate the function
-        cout << "y = " << y << "  <- value of y = sin(x) + x - 1.5 for x = " << x << endl;
+        double y = sin(x) + abs(5*x - 1.5); // calculate the function
+        cout << "y = " << y << "  <- value of y = sin(x) + |5x - 1.5| for x = " << x << endl;
     }
 
     return 0;
