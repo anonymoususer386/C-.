@@ -1,0 +1,55 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+// Структура для представлення часу
+struct Date {
+    int hours = 0;    // години (0–23)
+    int minutes = 0;  // хвилини (0–59)
+};
+
+int main() {
+    Date start, end;
+
+    // Ввід часу початку
+    cout << "Enter start hours: ";
+    cin >> start.hours;
+    cout << "Enter start minutes: ";
+    cin >> start.minutes;
+
+    // Ввід часу завершення
+    cout << "Enter end hours: ";
+    cin >> end.hours;
+    cout << "Enter end minutes: ";
+    cin >> end.minutes;
+
+    // Перевірка коректності введених даних
+    if (start.hours < 0 || start.hours >= 24 || start.minutes < 0 || start.minutes >= 60 ||
+        end.hours < 0 || end.hours >= 24 || end.minutes < 0 || end.minutes >= 60) {
+        cout << "Invalid time entered." << endl;
+        return 1;
+    }
+
+    // Переводимо час у хвилини
+    int startTotal = start.hours * 60 + start.minutes;
+    int endTotal = end.hours * 60 + end.minutes;
+
+    // Якщо подія завершилась наступного дня
+    if (endTotal < startTotal) {
+        endTotal += 24 * 60;
+    }
+
+    int duration = endTotal - startTotal;
+
+    // Обчислення тривалості
+    Date diff;
+    diff.hours = duration / 60;
+    diff.minutes = duration % 60;
+
+    // Вивід результату
+    cout << "Event duration: ";
+    cout << setw(2) << setfill('0') << diff.hours << ":";
+    cout << setw(2) << setfill('0') << diff.minutes << endl;
+
+    return 0;
+}

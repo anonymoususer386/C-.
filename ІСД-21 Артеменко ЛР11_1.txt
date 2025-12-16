@@ -1,0 +1,50 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+// Оголошення структури для зберігання часу
+struct Time {
+    int hours = 0;    // години (0–23)
+    int minutes = 0;  // хвилини (0–59)
+};
+
+int main() {
+    Time start;       // початковий час
+    int addMinutes;   // кількість хвилин, які потрібно додати
+
+    // Ввід початкового часу
+    cout << "Enter start hours: ";
+    cin >> start.hours;
+    cout << "Enter start minutes: ";
+    cin >> start.minutes;
+
+    // Перевірка коректності часу
+    if (start.hours < 0 || start.hours >= 24 || start.minutes < 0 || start.minutes >= 60) {
+        cout << "Invalid time entered." << endl;
+        return 1;
+    }
+
+    // Ввід кількості хвилин
+    cout << "Enter minutes to add: ";
+    cin >> addMinutes;
+
+    if (addMinutes < 0) {
+        cout << "Minutes cannot be negative." << endl;
+        return 1;
+    }
+
+    // Переводимо все у хвилини
+    int totalMinutes = start.hours * 60 + start.minutes + addMinutes;
+
+    // Обчислюємо новий час
+    Time result;
+    result.hours = (totalMinutes / 60) % 24;
+    result.minutes = totalMinutes % 60;
+
+    // Вивід результату у форматі HH:MM
+    cout << "Result time: ";
+    cout << setw(2) << setfill('0') << result.hours << ":";
+    cout << setw(2) << setfill('0') << result.minutes << endl;
+
+    return 0;
+}
