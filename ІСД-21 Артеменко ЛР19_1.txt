@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+bool hasUpperCase(const std::string &s) {
+    for (char c : s) if (std::isupper(c)) return true;
+    return false;
+}
+
+bool hasLowerCase(const std::string &s) {
+    for (char c : s) if (std::islower(c)) return true;
+    return false;
+}
+
+bool hasDigit(const std::string &s) {
+    for (char c : s) if (std::isdigit(c)) return true;
+    return false;
+}
+
+bool hasSpecialChar(const std::string &s) {
+    for (char c : s) if (!std::isalnum(c)) return true;
+    return false;
+}
+
+int main() {
+    std::string password;
+    std::getline(std::cin, password);
+
+    bool valid = true;
+
+    if (password.length() != 8) {
+        std::cout << "The password must be 8 characters long\n";
+        valid = false;
+    }
+    if (!hasUpperCase(password)) {
+        std::cout << "The password must have at least one upper case letter\n";
+        valid = false;
+    }
+    if (!hasLowerCase(password)) {
+        std::cout << "The password must have at least one lower case letter\n";
+        valid = false;
+    }
+    if (!hasDigit(password)) {
+        std::cout << "The password must have at least one digit\n";
+        valid = false;
+    }
+    if (!hasSpecialChar(password)) {
+        std::cout << "The password must have at least one special character\n";
+        valid = false;
+    }
+
+    if (valid) {
+        std::cout << "The password is valid\n";
+    }
+
+    return 0;
+}

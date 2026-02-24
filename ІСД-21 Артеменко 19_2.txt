@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <sstream>
+
+int main() {
+    std::string valuesLine, templateLine;
+    std::getline(std::cin, valuesLine);
+    std::getline(std::cin, templateLine);
+
+    std::map<std::string, std::string> values;
+
+    // Розбиваємо valuesLine на пари "name=value"
+    std::stringstream ss(valuesLine);
+    std::string pair;
+    while (std::getline(ss, pair, ',')) {
+        size_t eqPos = pair.find('=');
+        if (eqPos != std::string::npos) {
+            std::string key = pair.substr(0, eqPos);
+            std::string val = pair.substr(eqPos + 1);
+            values[key] = val;
+        }
+    }
+
+    // Заміна шаблонних [name] на відповідні значення
+    std::string result;
+    for (size_t i = 0; i < templateLine.length(); ++i) {
+        if (templateLine[i] == '[') {
+            size_t close = templateLine.find(']', i);
+            if (close != std::string::npos) {
+                std::string key = templateLine.substr(i + 1, close - i - 1);
+                if (values.find(key) != values.end())
+                    result += values[key];
+                else
+                    result += "[" + key + "]"; // якщо немає значення, залишаємо як є
+                i = close; // перескакуємо за закриваючу дужку
+            } else {
+                result += templateLine[i]; // якщо закриваючої дужки немає, просто додаємо символ
+            }
+        } else {
+            result += templateLine[i];
+        }
+    }
+
+    std::cout << result << "\n";
+    return 0;
+}
