@@ -1,0 +1,74 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+struct Date {
+    int year;
+    int month;
+    int day;
+};
+
+bool isLeap(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+}
+
+int monthLength(int year, int month) {
+    int months[12] = {31, 28, 31, 30, 31, 30,
+                      31, 31, 30, 31, 30, 31};
+
+    if (month == 2 && isLeap(year))
+        return 29;
+
+    return months[month - 1];
+}
+
+Date today(void) {
+    time_t t = time(NULL);
+    tm tl = *localtime(&t);
+
+    Date current;
+    current.year  = tl.tm_year + 1900;
+    current.month = tl.tm_mon + 1;
+    current.day   = tl.tm_mday;
+
+    return current;
+}
+
+int daysFromStartOfYear(Date d) {
+    int days = 0;
+
+    for(int m = 1; m < d.month; m++)
+        days += monthLength(d.year, m);
+
+    days += d.day;
+
+    return days;
+}
+
+int main(void) {
+
+    Date birth = {2005, 5, 10};   // ← тут вписати свою дату народження
+    Date current = today();
+
+    int totalDays = 0;
+
+    // Дні в роках між ними
+    for(int y = birth.year; y < current.year; y++)
+        totalDays += 365 + (isLeap(y) ? 1 : 0);
+
+    // Віднімаємо дні до народження у першому році
+    totalDays -= daysFromStartOfYear(birth);
+
+    // Додаємо дні до сьогодні у поточному році
+    totalDays += daysFromStartOfYear(current);
+
+    cout << "Today: "
+         << current.year << "-"
+         << current.month << "-"
+         << current.day << endl;
+
+    cout << "Count of days from birth: "
+         << totalDays << endl;
+
+    return 0;
+}
