@@ -1,17 +1,35 @@
 #include <iostream>
 using namespace std;
 
+// Перевірка високосного року
 bool isLeap(int year) {
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
 
-int monthLength(int year, int month) {
+// Варіант 1 — через switch
+int monthLengthSwitch(int year, int month) {
+    if (month < 1 || month > 12)
+        return 0;
+
+    switch(month) {
+        case 1: case 3: case 5: case 7:
+        case 8: case 10: case 12:
+            return 31;
+        case 4: case 6: case 9: case 11:
+            return 30;
+        case 2:
+            return isLeap(year) ? 29 : 28;
+    }
+    return 0;
+}
+
+// Варіант 2 — через масив
+int monthLengthArray(int year, int month) {
+    if (month < 1 || month > 12)
+        return 0;
 
     int months[12] = {31, 28, 31, 30, 31, 30,
                       31, 31, 30, 31, 30, 31};
-
-    if (month < 1 || month > 12)
-        return 0;
 
     if (month == 2 && isLeap(year))
         return 29;
@@ -19,11 +37,22 @@ int monthLength(int year, int month) {
     return months[month - 1];
 }
 
-int main(void) {
-    for(int yr = 2000; yr < 2002; yr++) {
-        for(int mo = 1; mo <= 12; mo++)
-            cout << monthLength(yr,mo) << " ";
-        cout << endl;
+int main() {
+    int year, month;
+    cout << "Enter year: ";
+    cin >> year;
+    cout << "Enter month (1-12): ";
+    cin >> month;
+
+    int lenSwitch = monthLengthSwitch(year, month);
+    int lenArray = monthLengthArray(year, month);
+
+    if (lenSwitch == 0) {
+        cout << "Invalid month!" << endl;
+    } else {
+        cout << "Length of month using switch: " << lenSwitch << endl;
+        cout << "Length of month using array : " << lenArray << endl;
     }
+
     return 0;
 }
