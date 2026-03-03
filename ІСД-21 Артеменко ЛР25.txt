@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+// Базовий клас
+class Tree {
+public:
+    virtual void draw() {
+        cout << "Base tree" << endl;
+    }
+    virtual ~Tree() {} // віртуальний деструктор
+};
+
+// Похідний клас 1
+class Tree1 : public Tree {
+public:
+    void draw() override {
+        cout << "Drawing 1:" << endl;
+        cout << " /\\" << endl;
+        cout << "//\\\\" << endl;
+    }
+};
+
+// Похідний клас 2
+class Tree2 : public Tree {
+public:
+    void draw() override {
+        cout << "Drawing 2:" << endl;
+        cout << " /\\" << endl;
+        cout << "/**\\" << endl;
+    }
+};
+
+// Похідний клас 3
+class Tree3 : public Tree {
+public:
+    void draw() override {
+        cout << "Drawing 3:" << endl;
+        cout << " /\\" << endl;
+        cout << "/++\\" << endl;
+    }
+};
+
+int main() {
+    // Масив вказівників на базовий клас
+    Tree* forest[3];
+
+    // Створюємо об'єкти похідних класів
+    Tree1 t1;
+    Tree2 t2;
+    Tree3 t3;
+
+    // Присвоюємо вказівники в масив
+    forest[0] = &t1;
+    forest[1] = &t2;
+    forest[2] = &t3;
+
+    // Викликаємо draw() через базовий клас (поліморфізм)
+    for (int i = 0; i < 3; i++) {
+        forest[i]->draw();
+        cout << endl;
+    }
+
+    return 0;
+}
