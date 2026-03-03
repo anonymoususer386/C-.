@@ -1,0 +1,83 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+class Fraction {
+public:
+    Fraction(int numerator, int denominator);
+    string toString();
+    double toDouble();
+
+private:
+    int numerator;
+    int denominator;
+};
+
+Fraction::Fraction(int numerator, int denominator) {
+    // переносимо знак у чисельник
+    if (denominator < 0) {
+        numerator = -numerator;
+        denominator = -denominator;
+    }
+
+    this->numerator = numerator;
+    this->denominator = denominator;
+}
+
+string Fraction::toString() {
+    int num = numerator;
+    int den = denominator;
+
+    bool negative = (num < 0);
+    num = abs(num);
+
+    int whole = num / den;
+    int remainder = num % den;
+
+    string result = "";
+
+    if (negative)
+        result += "-";
+
+    if (remainder == 0) {
+        result += to_string(whole);
+    }
+    else if (whole == 0) {
+        result += to_string(num) + "/" + to_string(den);
+    }
+    else {
+        result += to_string(whole) + " "
+               + to_string(remainder) + "/"
+               + to_string(den);
+    }
+
+    return result;
+}
+
+double Fraction::toDouble() {
+    return static_cast<double>(numerator) / denominator;
+}
+
+int main() {
+    int num, den;
+    string input;
+
+    getline(cin, input);
+
+    stringstream ss(input);
+    char slash;
+
+    ss >> num >> slash >> den;
+
+    Fraction fraction(num, den);
+
+    cout << fraction.toString()
+         << " is "
+         << fraction.toDouble()
+         << " in decimal"
+         << endl;
+
+    return 0;
+}
