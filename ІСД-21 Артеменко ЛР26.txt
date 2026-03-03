@@ -1,0 +1,82 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+
+// Базовий клас
+class IPAddress {
+public:
+    IPAddress(const string& ip) : address(ip) {}
+    IPAddress(const IPAddress& other) : address(other.address) {}
+
+    virtual void print() const {
+        cout << address;
+    }
+
+    string getAddress() const {
+        return address;
+    }
+
+protected:
+    string address;
+};
+
+// Похідний клас
+class IPAddressChecked : public IPAddress {
+public:
+    IPAddressChecked(const string& ip) : IPAddress(ip) {
+        isCorrect = checkIP(ip);
+    }
+
+    IPAddressChecked(const IPAddressChecked& other)
+        : IPAddress(other), isCorrect(other.isCorrect) {}
+
+    void print() const override {
+        IPAddress::print();
+        cout << " - " << (isCorrect ? "Correct" : "Not Correct");
+    }
+
+private:
+    bool isCorrect;
+
+    // Метод перевірки коректності IP
+    bool checkIP(const string& ip) {
+        stringstream ss(ip);
+        string segment;
+        int count = 0;
+
+        while (getline(ss, segment, '.')) {
+            if (segment.empty() || segment.size() > 3) return false;
+            for (char c : segment) {
+                if (!isdigit(c)) return false;
+            }
+            int num = stoi(segment);
+            if (num < 0 || num > 255) return false;
+            count++;
+        }
+        return count == 4;
+    }
+};
+
+int main() {
+    string ip1, ip2, ip3;
+    cout << "Enter first IP: ";
+    cin >> ip1;
+    cout << "Enter second IP: ";
+    cin >> ip2;
+    cout << "Enter third IP: ";
+    cin >> ip3;
+
+    IPAddress baseIP(ip1);
+    IPAddressChecked checkedIP1(ip2);
+    IPAddressChecked checkedIP2(ip3);
+
+    baseIP.print();
+    cout << endl;
+    checkedIP1.print();
+    cout << endl;
+    checkedIP2.print();
+    cout << endl;
+
+    return 0;
+}
