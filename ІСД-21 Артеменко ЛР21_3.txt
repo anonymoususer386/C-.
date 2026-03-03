@@ -1,0 +1,190 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+class FlightBooking {
+public:
+    FlightBooking(int id, int capacity, int reserved);
+    FlightBooking();
+
+    void printStatus();
+    bool reserveSeats(int number_of_seats);
+    bool cancelReservations(int number_of_seats);
+    int getId() { return id; }
+    bool isEmpty() { return id == 0; }
+
+private:
+    int id;
+    int capacity;
+    int reserved;
+};
+
+FlightBooking::FlightBooking() {
+    id = 0;
+    capacity = 0;
+    reserved = 0;
+}
+
+FlightBooking::FlightBooking(int id, int capacity, int reserved) {
+    this->id = id;
+    this->capacity = capacity;
+
+    if (reserved < 0)
+        this->reserved = 0;
+    else if (reserved > capacity * 1.05)
+        this->reserved = capacity * 1.05;
+    else
+        this->reserved = reserved;
+}
+
+void FlightBooking::printStatus() {
+    if (id == 0)
+        return;
+
+    int percentage = (capacity == 0) ? 0 : (reserved * 100 / capacity);
+
+    std::cout << "Flight " << id << " : "
+              << reserved << "/" << capacity
+              << " (" << percentage << "%) seats reserved"
+              << std::endl;
+}
+
+bool FlightBooking::reserveSeats(int number_of_seats) {
+    if (reserved + number_of_seats > capacity * 1.05)
+        return false;
+
+    reserved += number_of_seats;
+    return true;
+}
+
+bool FlightBooking::cancelReservations(int number_of_seats) {
+    if (reserved - number_of_seats < 0)
+        return false;
+
+    reserved -= number_of_seats;
+    return true;
+}
+
+int main() {
+    FlightBooking booking[10];
+
+    std::string line;
+
+    while (true) {
+        std::getline(std::cin, line);
+
+        std::stringstream ss(line);
+        std::string command;
+        ss >> command;
+
+        if (command == "quit")
+            break;
+
+        bool anyFlight = false;
+        for (int i = 0; i < 10; i++)
+            if (!booking[i].isEmpty())
+                anyFlight = true;
+
+        if (!anyFlight && command != "create") {
+            std::cout << "No flights in the system" << std::endl;
+            continue;
+        }
+
+        if (command == "create") {
+            int id, cap;
+            ss >> id >> cap;
+
+            bool exists = false;
+            for (int i = 0; i < 10; i++)
+                if (booking[i].getId() == id)
+                    exists = true;
+
+            if (exists || id == 0) {
+                std::cout << "Cannot perform this operation" << std::endl;
+                continue;
+            }
+
+            bool created = false;
+            for (int i = 0; i < 10; i++) {
+                if (booking[i].isEmpty()) {
+                    booking[i] = FlightBooking(id, cap, 0);
+                    created = true;
+                    break;
+                }
+            }
+
+            if (!created) {
+                std::cout << "Cannot perform this operation" << std::endl;
+            }
+        }
+
+        else if (command == "delete") {
+            int id;
+            ss >> id;
+
+            bool found = false;
+            for (int i = 0; i < 10; i++) {
+                if (booking[i].getId() == id) {
+                    booking[i] = FlightBooking();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                std::cout << "Cannot perform this operation: flight "
+                          << id << " not found" << std::endl;
+        }
+
+        else if (command == "add") {
+            int id, n;
+            ss >> id >> n;
+
+            bool found = false;
+            for (int i = 0; i < 10; i++) {
+                if (booking[i].getId() == id) {
+                    found = true;
+                    if (!booking[i].reserveSeats(n))
+                        std::cout << "Cannot perform this operation: capacity reached" << std::endl;
+                    break;
+                }
+            }
+
+            if (!found)
+                std::cout << "Cannot perform this operation: flight "
+                          << id << " not found" << std::endl;
+        }
+
+        else if (command == "cancel") {
+            int id, n;
+            ss >> id >> n;
+
+            bool found = false;
+            for (int i = 0; i < 10; i++) {
+                if (booking[i].getId() == id) {
+                    found = true;
+                    if (!booking[i].cancelReservations(n))
+                        std::cout << "Cannot perform this operation" << std::endl;
+                    break;
+                }
+            }
+
+            if (!found)
+                std::cout << "Cannot perform this operation: flight "
+                          << id << " not found" << std::endl;
+        }
+
+        bool printed = false;
+        for (int i = 0; i < 10; i++) {
+            if (!booking[i].isEmpty()) {
+                booking[i].printStatus();
+                printed = true;
+            }
+        }
+
+        if (!printed)
+            std::cout << "No flights in the system" << std::endl;
+    }
+
+    return 0;
+}

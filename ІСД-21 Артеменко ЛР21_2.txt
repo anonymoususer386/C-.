@@ -1,0 +1,103 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class FlightBooking {
+public:
+    FlightBooking(int id, int capacity, int reserved);
+    void printStatus();
+    bool add(int n);
+    bool cancel(int n);
+
+private:
+    int id;
+    int capacity;
+    int reserved;
+    int maxReserved();   // 105% limit
+};
+
+int FlightBooking::maxReserved() {
+    return capacity * 1.05;
+}
+
+FlightBooking::FlightBooking(int id, int capacity, int reserved)
+{
+    this->id = id;
+    this->capacity = capacity;
+
+    if (reserved < 0)
+        this->reserved = 0;
+    else if (reserved > maxReserved())
+        this->reserved = maxReserved();
+    else
+        this->reserved = reserved;
+}
+
+void FlightBooking::printStatus()
+{
+    double percentage = 0.0;
+
+    if (capacity != 0)
+        percentage = (double)reserved / capacity * 100;
+
+    cout << "Flight " << id
+         << " : " << reserved
+         << "/" << capacity
+         << " (" << (int)percentage
+         << "%) seats reserved"
+         << endl;
+}
+
+bool FlightBooking::add(int n)
+{
+    if (n < 0 || reserved + n > maxReserved())
+        return false;
+
+    reserved += n;
+    return true;
+}
+
+bool FlightBooking::cancel(int n)
+{
+    if (n < 0 || reserved - n < 0)
+        return false;
+
+    reserved -= n;
+    return true;
+}
+
+int main() {
+    int capacity, reserved;
+
+    cin >> capacity;
+    cin >> reserved;
+
+    FlightBooking booking(1, capacity, reserved);
+    booking.printStatus();
+
+    string command;
+    int number;
+
+    while (true) {
+        cin >> command;
+
+        if (command == "quit")
+            break;
+
+        cin >> number;
+
+        bool result = false;
+
+        if (command == "add")
+            result = booking.add(number);
+        else if (command == "cancel")
+            result = booking.cancel(number);
+
+        if (result)
+            booking.printStatus();
+        else
+            cout << "Cannot perform this operation" << endl;
+    }
+
+    return 0;
+}
