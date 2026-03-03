@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+// ===== AdHocSquare =====
+// Площа рахується кожного разу
+
+class AdHocSquare
+{
+public:
+    AdHocSquare(double side)
+    {
+        this->side = side;
+    }
+
+    void set_side(double new_side)
+    {
+        if(new_side >= 0)
+            side = new_side;
+    }
+
+    double get_area()
+    {
+        return side * side;  // рахуємо щоразу
+    }
+
+private:
+    double side;
+};
+
+// ===== LazySquare =====
+// Площа рахується лише якщо сторона змінилась
+
+class LazySquare
+{
+public:
+    LazySquare(double side)
+    {
+        this->side = side;
+        area = side * side;
+        side_changed = false;
+    }
+
+    void set_side(double new_side)
+    {
+        if(new_side >= 0 && new_side != side)
+        {
+            side = new_side;
+            side_changed = true;
+        }
+    }
+
+    double get_area()
+    {
+        if(side_changed)
+        {
+            area = side * side;
+            side_changed = false;
+        }
+        return area;
+    }
+
+    bool changet()
+    {
+        return side_changed;
+    }
+
+private:
+    double side;
+    double area;
+    bool side_changed;
+};
+
+int main()
+{
+    cout << "=== AdHocSquare ===" << endl;
+    AdHocSquare a(4);
+    cout << "Area: " << a.get_area() << endl;
+    a.set_side(5);
+    cout << "Area: " << a.get_area() << endl;
+
+    cout << "\n=== LazySquare ===" << endl;
+    LazySquare l(4);
+    cout << "Area: " << l.get_area() << endl;
+
+    l.set_side(5);
+    cout << "Side changed? " << l.changet() << endl;
+    cout << "Area: " << l.get_area() << endl;
+    cout << "Side changed? " << l.changet() << endl;
+
+    return 0;
+}
